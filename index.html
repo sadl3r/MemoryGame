@@ -1,0 +1,71 @@
+<html>
+	<head>
+		<title>Memory Game</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css" media="screen" /> 
+		<script type="text/javascript" src="lib/prototype.js"></script>
+	</head>
+	<body>
+		<div id="game">
+			<div id="cards_container">
+			</div>
+			<div class="sidebar">
+				<div class="game_logo"><img src="ressources/logo.png" title="logo" alt="logo" /></div>
+				<div class="game_info"></div>
+				<div class="game_buttons"></div>
+				<div class="game_settings" style="display:none;"></div>
+			</div>
+			<div class="game_data" style="display:none;">
+				<script type="text/javascript" src="js/misc.js"></script>
+				<script type="text/javascript" src="js/player.js"></script>
+				<script type="text/javascript" src="js/card.js"></script>
+				<script type="text/javascript" src="js/board.js"></script>
+				<script type="text/javascript">
+					document.observe("dom:loaded", function() {
+						var board = new Board();
+						board.startGame(Misc.Difficulty.NORMAL);
+					});
+				</script>
+			</div>
+			<div id="popup" style="display:none;">
+				<a class="close" href=".">X</a>
+				<form action="http://somesite.com/prog/adduser" method="post">
+				    <p>
+    					<label for="firstname">First name: </label><br />
+              			<input type="text" id="firstname" name="firstname"/><br />
+    					<label for="lastname">Last name: </label><br />
+              			<input type="text" id="lastname" name="lastname"/><br />
+    					<label for="email">Email: </label><br />
+              			<input type="text" id="email" name="email"/><br />
+              			<button type="submit" value="Send">Submit</button>
+    				</p>
+    				<ul id="scoreBoard"></ul>
+				</form>
+			</div>
+			<script type="text/javascript">
+				$('popup').on('click', 'a', function(event) {
+					$('popup').setStyle({display: 'none'});
+					event.preventDefault();
+				});
+				$('popup').on('submit', 'form', function(event) {
+					event.preventDefault();
+					$('scoreBoard').clear();
+					new Ajax.Request('server/saveScore.php', {
+						method: 'post',
+						parameters: {
+							firstname: $$('[name="firstname"]').first().value, 
+							lastname: $$('[name="lastname"]').first().value,
+							email: $$('[name="email"]').first().value,
+							score: $('score_hidden').value
+						},
+						onSuccess: function(transport) {
+							var response = transport.responseText.evalJSON();
+							if (response.status != undefined && response.status == "ok") {
+								$('scoreBoard').insert(response.scores);
+							}
+						}
+					});
+				});
+			</script>
+		</div>
+	</body>
+</html> 

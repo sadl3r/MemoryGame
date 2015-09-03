@@ -1,0 +1,8 @@
+INSTALL INTRUCTION
+
+1/ Set the database settings in the file "dbSettings.php" in conf folder
+2/ Make sure that you have an HTTP Server installed and launch
+3/ Paste the game folder 'MemoryGame' into your web folder (depending on the architecture it may be either /var/www or C:/wamp/wwww)
+4/ Create the database dependencies by going to "http://localhost/MemoryGame/utils/installDBTables.php" or by runing manually the script with "php utils/installDBTables.php"
+5/ Now go to the game web page "http://localhost/MemoryGame/", you should see a grid with card
+6/ You are good to go

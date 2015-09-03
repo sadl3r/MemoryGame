@@ -1,0 +1,9 @@
+GAME_INSTRUCTION
+
+1/ Make sure that you have already read the INSTALL_INSTRUCTIONS
+2/ Make sure that you have an HTTP Server installed and launch
+3/ Paste the game folder 'MemoryGame' into your web folder (depending on the architecture it may be either /var/www or C:/wamp/wwww)
+4/ Now go to the game web page "http://localhost/MemoryGame/", you should see a grid with card
+5/ Click on the "Start Game" button is the game is stopped but it should have automatically started
+6/ Select the card that have the same color to win points
+7/ Once all the card are found or when you stop the game, a popup will appear were you can enter your information to be into the scoreboard
